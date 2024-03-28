@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>DiSCYeR</title>
+
+    <meta name="description" content="Play music non-stop from your collection on the Discogs website.">
+    <meta name="og:description" content="Play music non-stop from your collection on the Discogs website."/>
+    <meta name="og:url" content="https://discyer.com/"/>
+    <meta name="og:title" content="DiSCYeR"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <!-- <link rel="stylesheet" href="css/color-theme-dark.css"> -->
+    <link rel="icon" href="img/favicon.ico" />
+  </head>
+  <body class="bg-light">
+    <div class="pos-f-t visible-authorized d-none">
+      <div class="collapse" id="navbarToggleExternalContent">
+        <div class="bg-light pt-2 pl-4 pr-4">
+          <small class="d-block text-right text-muted mb-1">
+            <span class="visible-anonymous">
+              You are currently signed off.
+            </span>
+            <span class="visible-authorized d-none">
+              You are signed in as
+              <div class="dropdown d-inline">
+                <button class="profile-name btn btn-link m-0 p-0 dropdown-toggle" type="button" id="dropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownProfile">
+                  <a href="#" class="dropdown-item" data-toggle="modal" data-target="#modal-settings" title="Manage your settings">Settings</a>
+                  <a href="#" class="dropdown-item" data-toggle="modal" data-target="#modal-about" title="What about this website?">About</a>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item signoff" title="Close your current session">Sign off</a>
+                </div>
+              </div>
+            </span>
+          </small>
+
+          <h2 class="mb-3 visible-authorized">
+            <span class="release-full-title"></span>
+          </h2>
+          <div class="row visible-authorized d-none">
+            <div class="col-md-10">
+              <p>
+                <a href="" class="release-href" target="_blank" title="View this release on the Discogs website">View this release on Discogs <span class="fa fa-external-link"></span></a>
+              </p>
+
+              <dl class="row">
+                <dt class="col-sm-2">Label</dt>
+                <dd class="col-sm-10 release-label"></dd>
+                <dt class="col-sm-2">Released</dt>
+                <dd class="col-sm-10"><span class="release-country"></span> <span class="release-year"></span></dd>
+                <dt class="col-sm-2">Format</dt>
+                <dd class="col-sm-10 release-format"></dd>
+                <dt class="col-sm-2">Genre</dt>
+                <dd class="col-sm-10 release-full-genre"></dd>
+                <dt class="col-sm-2">Videos</dt>
+                <dd class="col-sm-10 release-videos"></dd>
+              </dl>
+            </div> <!-- /col -->
+            <div class="col-md-2 text-center mb-2">
+              <img src="" class="img-fluid img-thumbnail rounded release-image">
+              <br>
+              <span class="release-rating"></span>
+              <br>
+              <strong>
+                  <a class="release-market text-danger" target="_blank" title="View the market of this release on the Discogs website">
+                    <span class="release-market-currency"></span><span class="release-market-price"></span>
+                    <span class="fa fa-external-link"></span>
+                  </a>
+              </strong>
+          </div> <!-- /col -->
+          </div> <!-- /row -->
+        </div> <!-- /bg-light -->
+      </div> <!-- /collapse -->
+
+      <nav class="navbar navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="fa fa-navicon"></span>
+          <!-- <span class="navbar-toggler-icon"></span> -->
+        </button>
+        <a class="navbar-brand release-full-title" href="#"></a>
+      </nav>
+    </div>
+
+    <div class="container visible-anonymous">
+      <div class="jumbotron bg-light text-center">
+        <h1 class="display-3"><span class="fa fa-music"></span> DiSCYeR</h1>
+        <p class="lead">Play music non-stop from your collection on the Discogs website.</p>
+      </div>
+
+      <form class="form-signin mb-5" novalidate>
+        <h2 class="mb-4">Sign in</h2>
+        <div>
+          <label for="inputToken">Enter your <a href="" data-toggle="modal" data-target="#modal-personal-access-token" title="Where do I find my personal access token?">personal access token</a> to access this application.</label>
+          <input type="text" id="inputToken" class="form-control" placeholder="Personal access token" required autofocus>
+          <div class="invalid-feedback">
+            Please provide a valid personal access token.
+          </div>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block mb-4" type="submit">Sign in</button>
+        <p>Maybe you first want, or even need, to read more <a href="" data-toggle="modal" data-target="#modal-about" title="What about this website?">about this website</a>?</p>
+      </form>
+    </div>
+
+    <div class="loading">
+      <span class="fa fa-spin fa-spinner fa-2x"></span>
+    </div>
+
+    <div class="visible-authorized d-none">
+      <div class="video-wrapper">
+        <div id="player"></div>
+      </div>
+    </div>
+
+    <nav class="navbar fixed-bottom navbar-light bg-light visible-authorized d-none">
+      <span class="navbar-text">
+        <span class="current-playlist-folder">
+          Playing from the <a href="#" class="current-folder" title="Select another source to play from" data-toggle="modal" data-target="#modal-playlist-select"></a> folder.
+        </span>
+        <span class="current-playlist-wantlist d-none">
+          Playing from your <a href="#" title="Select another source to play from" data-toggle="modal" data-target="#modal-playlist-select">wantlist</a>.
+        </span>
+        <span class="current-playlist-list d-none">
+          Playing from the <a href="#" class="current-list" title="Select another source to play from" data-toggle="modal" data-target="#modal-playlist-select"></a> list.
+        </span>
+      </span>
+      <a href="#" class="btn btn-primary play-next-release" title="Play the next random release">Play next release <span class="fa fa-step-forward"></span></a>
+    </nav>
+
+    <div class="modal" id="modal-playlist-select">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Select the playlist source</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Videos are played from one of your folders, lists or from your wantlist on Discogs. Select the source you wish to play from:</p>
+            <div class="row">
+              <div class="col-6 folders"></div>
+              <div class="col-6 lists"></div>
+            </div>
+            <p>The following links can help you manage your sources:
+            <ul>
+              <li><a href="https://www.discogs.com/manage_folders" target="_blank">Manage your folders on Discogs <span class="fa fa-external-link"></span></a></li>
+              <li><a href="https://www.discogs.com/mywantlist" target="_blank">View your wantlist on Discogs <span class="fa fa-external-link"></span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modal-settings">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Settings</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="settings-play-first" value="1"> Play only the first video of a release
+              </label>
+            </div>
+
+            <p><a class="profile-href" href="" target="_blank">View your profile on Discogs <span class="fa fa-external-link"></span></a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modal-personal-access-token">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Where do I find my personal access token?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Go to the <a href="https://www.discogs.com/settings/developers" target="_blank">developers page <span class="fa fa-external-link"></span></a> on Discogs.
+              This page contains a button to (re)generate a personal access token.
+            </p>
+            <div class="row mb-3">
+              <div class="col-6">
+                <img src="img/discogs-generate-token.png" class="img-fluid img-thumbnail rounded">
+              </div>
+              <div class="col-6">
+                <img src="img/discogs-generate-new-token.png" class="img-fluid img-thumbnail rounded">
+              </div>
+            </div>
+            <p>The code after <em>'Current token:'</em> is your personal access token and can be used to sign in.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modal-about">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">About DiSCYeR</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-6">
+                <h3 class="mb-4">What about this website?</h3>
+                <p>This website contains a web application to play music non-stop from your collection on <a href="https://www.discogs.com">Discogs</a>.</p>
+                <p class="text-center"><img src="img/screenshot.png" class="img-fluid img-thumbnail rounded"></p>
+                <p>Sign in, select one of your folders and a video from a random release will be played. You can view the details and when it's done playing the video, a next random release is selected and played and so forth... It just keeps on going.</p>
+                <p class="mb-4">You listen to your own record collection without worrying about flipping or switching the records.</p>
+              </div>
+              <div class="col-md-6">
+                <h3 class="mb-4">Terms of service</h3>
+                <p class="mb-4">This service comes as is and without guarantees. It seems to work though. The source code is also open-source and can be found on <a href="https://github.com">Github</a>.
+                <h3 class="mb-4">Privacy policy</h3>
+                <p class="mb-4">This application does not store any personal data. The access token is kept client-side in memory and is only used to read from the Discogs API.</p>
+                <h3 class="mb-4">Cookie policy</h3>
+                <p class="mb-4">This website does not use any cookies. Could eat something though.</p>
+                <h3 class="mb-4">Donate</h3>
+                <p>If you want to support this application, you can donate some little thing using the button below.</p>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                  <input type="hidden" name="cmd" value="_s-xclick">
+                  <input type="hidden" name="hosted_button_id" value="PZUYS67T54JSC">
+                  <input type="image" src="https://www.paypalobjects.com/en_US/BE/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                  <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script src="http://www.youtube.com/player_api"></script>
+    <script src="js/service.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

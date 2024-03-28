@@ -1,0 +1,14 @@
+.modal-content,
+.bg-light {
+  background-color: #111 !important;
+}
+
+.navbar-light .navbar-brand,
+.navbar-light .navbar-toggler,
+.navbar-light .navbar-text,
+.navbar-brand,
+.navbar-toggler,
+.close,
+.bg-light {
+  color: #e7e7e7;
+}
